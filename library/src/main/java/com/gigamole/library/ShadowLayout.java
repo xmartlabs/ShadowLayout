@@ -64,6 +64,7 @@ public class ShadowLayout extends FrameLayout {
 
     // Detect if shadow is visible
     private boolean mIsShadowed;
+    private boolean mIsRedrawShadowBlocked;
 
     // Shadow variables
     private int mShadowColor;
@@ -186,6 +187,14 @@ public class ShadowLayout extends FrameLayout {
         return mShadowDy;
     }
 
+    public boolean isRedrawShadowBlocked() {
+        return mIsRedrawShadowBlocked;
+    }
+
+    public void setRedrawShadowBlocked(boolean isRedrawShadowBlocked) {
+        this.mIsRedrawShadowBlocked = isRedrawShadowBlocked;
+    }
+
     // Reset shadow layer
     private void resetShadow() {
         // Detect shadow axis offset
@@ -227,7 +236,7 @@ public class ShadowLayout extends FrameLayout {
         // If is not shadowed, skip
         if (mIsShadowed) {
             // If need to redraw shadow
-            if (mInvalidateShadow) {
+            if ((mInvalidateShadow && !mIsRedrawShadowBlocked) || mBitmap == null) {
                 // If bounds is zero
                 if (mBounds.width() != 0 && mBounds.height() != 0) {
                     // Reset bitmap to bounds
