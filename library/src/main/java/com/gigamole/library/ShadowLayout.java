@@ -25,13 +25,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.support.annotation.FloatRange;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+
+import androidx.annotation.FloatRange;
 
 /**
  * Created by GIGAMOLE on 13.04.2016.
  */
+@SuppressWarnings("unused")
 public class ShadowLayout extends FrameLayout {
 
     // Default shadow values
@@ -147,7 +149,6 @@ public class ShadowLayout extends FrameLayout {
         return mShadowAngle;
     }
 
-    @FloatRange
     public void setShadowAngle(@FloatRange(from = MIN_ANGLE, to = MAX_ANGLE) final float shadowAngle) {
         mShadowAngle = Math.max(MIN_ANGLE, Math.min(shadowAngle, MAX_ANGLE));
         resetShadow();
@@ -264,7 +265,7 @@ public class ShadowLayout extends FrameLayout {
             // Reset alpha to draw child with full alpha
             mPaint.setColor(adjustShadowAlpha(true));
             // Draw shadow bitmap
-            if (mCanvas != null && mBitmap != null && !mBitmap.isRecycled())
+            if (mBitmap != null && !mBitmap.isRecycled())
                 canvas.drawBitmap(mBitmap, 0.0F, 0.0F, mPaint);
         }
 
