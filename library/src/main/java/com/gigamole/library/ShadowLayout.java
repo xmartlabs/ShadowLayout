@@ -25,9 +25,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.support.annotation.FloatRange;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+
+import androidx.annotation.FloatRange;
 
 /**
  * Created by GIGAMOLE on 13.04.2016.
@@ -147,7 +148,6 @@ public class ShadowLayout extends FrameLayout {
         return mShadowAngle;
     }
 
-    @FloatRange
     public void setShadowAngle(@FloatRange(from = MIN_ANGLE, to = MAX_ANGLE) final float shadowAngle) {
         mShadowAngle = Math.max(MIN_ANGLE, Math.min(shadowAngle, MAX_ANGLE));
         resetShadow();
